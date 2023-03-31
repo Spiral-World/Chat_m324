@@ -1,4 +1,4 @@
-name: Yarn strting
+name: 🏗️ Building
 on: [push]
 jobs:
   Lint-Test-Build-Application:
@@ -7,6 +7,20 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+        
+      - name: 📦 Install Dependencies 
+        run: |
+          yarn install
+          yarn
+          yarn add eslint 
+          yarn add jest
+      - name: 🧪 Lint Code 
+        run: yarn eslint 
+      - name: 💉 Test Code
+        run: yarn jest
+      - name: 📦 Build Application
+        run: yarn build
+        
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Build and push Docker images
@@ -21,17 +35,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: user/app:latest
-
-      - name: 📦 Install Dependencies 
-        run: |
-          yarn install
-          yarn
-          yarn add eslint 
-          yarn add jest
-      - name: 🧪 Lint Code 
-        run: yarn eslint 
-      - name: 💉 Test Code
-        run: yarn jest
-      - name: 📦 Build Application
-        run: yarn build
+          tags: mat112800/app:latest
