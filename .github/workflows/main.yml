@@ -1,0 +1,37 @@
+name: Yarn strting
+on: [push]
+jobs:
+  Lint-Test-Build-Application:
+    name: Lint & Run Jest
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v4.0.0
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: user/app:latest
+
+      - name: 📦 Install Dependencies 
+        run: |
+          yarn install
+          yarn
+          yarn add eslint 
+          yarn add jest
+      - name: 🧪 Lint Code 
+        run: yarn eslint 
+      - name: 💉 Test Code
+        run: yarn jest
+      - name: 📦 Build Application
+        run: yarn build
