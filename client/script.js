@@ -21,6 +21,23 @@
         break;
       case 'activeUsers':
         activeUsers = message.users;
+        const LIST_ALL_USERS = document.createElement('div');
+
+        LIST_ALL_USERS.className = '';
+        LIST_ALL_USERS.id = 'all-active-users';
+
+        console.log(activeUsers);
+
+        activeUsers.forEach((user, index) => {
+          const ONE_USER = document.createElement('p');
+          ONE_USER.innerText = (index + 1) + ') ' + user.name;
+          LIST_ALL_USERS.appendChild(ONE_USER);
+        });
+
+        try {
+          document.body.removeChild(document.querySelector('#all-active-users'));
+        } catch (e) {}
+        document.body.appendChild(LIST_ALL_USERS);
         break;
       case 'typing':
         typingUsers = message.users;
