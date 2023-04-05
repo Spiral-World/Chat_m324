@@ -1,0 +1,28 @@
+# This is only an example. You don't apply this ingress file and don't use this in your pipeline.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-app # Change this to your app name
+  namespace: m324 # Ask the teacher for the namespace name
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+    - hosts:
+        - test.m324.hackerman.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch
+      secretName: test.m324.hackerman.ch-tls # Change this to your base url example: my-subdomain.m324.hackerman.ch-tls
+  rules:
+    - host: test.m324.hackerman.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-app # Change this to your app name
+                port:
+                  number: 80

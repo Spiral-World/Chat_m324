@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${APP_NAME} # Change this to your app name
+  namespace: ${KUBERNETES_NAMESPACE} # Ask the teacher for the namespace name
+  labels:
+    app: ${APP_NAME} # Change this to your app name
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: ${APP_NAME} # Change this to your app name
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME} # Change this to your app name
+    spec:
+      containers:
+        - name: ${APP_NAME} # Change this to your app name
+          image: ${IMAGE_TAG} # Change this to your image tag
+          command:
+            - /bin/sh
+            - "-c"
+            - yarn start
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            failureThreshold: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 3
+            periodSeconds: 5
+          ports:
+            - name: http
+              containerPort: 3000
+          resources:
+            requests:
+              cpu: 25m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
