@@ -2,16 +2,19 @@
 FROM node:18
 
 # Set the working directory inside the container
-WORKDIR ...
+WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
-COPY ...
+COPY . .
 
 # Install the dependencies
-RUN ...
+RUN yarn
 
-# Copy the source code to the container
-COPY ...
+# Compile the code to nodejs
+RUN ./node_modules/.bin/tsc
+
+# port on which the server will get called
+EXPOSE 3000
 
 # Start the server when the container starts
-CMD ...
+ENTRYPOINT ["node", "./build/index.js"]

@@ -10,7 +10,7 @@
   });
   socket.addEventListener('message', (event) => {
     const message = JSON.parse(event.data);
-    console.log('WebSocket message:', message);
+    writingCheck(message);
     switch (message.type) {
       case 'message':
         const messageElement = generateMessage(message, myUser);
