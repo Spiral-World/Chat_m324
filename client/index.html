@@ -13,9 +13,15 @@
   <body>
     <div class="w-full h-screen flex justify-center">
       <div class="max-w-2xl w-full md:w-3/4 lg:w-2/4 bg-white flex flex-col">
-        <div class="bg-blue-500 px-4 py-4 rounded-b">
-          <p class="text-lg font-bold text-white">LB1 Chat - M324</p>
-          <button onclick="showAllUsers()">Show All Active Users</button>
+        <div class="bg-cyan-800 px-4 py-4 rounded-b flex flex-row">
+          <div class="w-[50%] text-center flex flex-col">
+            <p class="text-lg font-bold text-white">LB1 Chat - M324</p>
+            <p id="activeLine" class="text-[10px] font-bold text-white"></p>
+          </div>
+          <div id="showUsers" class="bg-cyan-950 w-[50%] relative text-center text-white hover:border-2 border-cyan-400"> 
+            <button>Show active users</button>
+            <div id="all-active-users" class="w-[100%] absolute hidden flex-col text-center bg-cyan-700"></div>
+          </div>
         </div>
         <div class="flex-grow flex flex-col justify-start p-4 gap-4" id="messages"></div>
         <div class="bg-gray-100 px-4 py-4 flex items-center rounded-t">
