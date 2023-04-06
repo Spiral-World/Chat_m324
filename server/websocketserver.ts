@@ -12,7 +12,11 @@ const typingUsers: User[] = [];
 const broadcastMessage = (message: Message) => {
   console.log('Broadcasting message', message);
   websocketServer.clients.forEach((client) => {
-    client.send(JSON.stringify(message));
+    try {
+      client.send(JSON.stringify(message));
+    } catch (err) {
+      console.log(err);
+    }
   });
 };
 
