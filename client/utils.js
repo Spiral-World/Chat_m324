@@ -44,7 +44,7 @@ const generateMessage = (message, myUser) => {
   }
   messageElement.innerHTML = `
       <div class="${messageClasses}">
-        <p class="text-sm leading-snug">${message.user.name}: ${message.message}</p>
+        <p class="text-sm leading-snug"><span class="font-bold">${message.user.name}</span>: ${message.message}</p>
       </div>
       <img src="https://i.pravatar.cc/40?u=${message.userId}" alt="Profile" class="${pictureClasses}" />
     `;
