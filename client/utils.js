@@ -34,11 +34,11 @@ const generateMessage = (message, myUser) => {
   let pictureClasses = 'w-6 h-6 rounded-full mx-2 absolute top-1';
   console.log(isMyMessage);
   if (isMyMessage) {
-    messageClasses += ' bg-blue-500 text-white';
+    messageClasses += ' bg-cyan-800 text-white';
     pictureClasses += ' right-1';
     messageElement.classList.add('justify-end');
   } else {
-    messageClasses += ' bg-gray-300 text-gray-800';
+    messageClasses += ' bg-sky-800 text-white';
     pictureClasses += ' left-1';
     messageElement.classList.add('justify-start');
   }
