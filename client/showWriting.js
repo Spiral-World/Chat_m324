@@ -6,11 +6,7 @@ function writingCheck(message) {
         activeLine.innerText = "";
     } else {
         for (let i = 0; i < message.users.length; i++) {
-            //if (activeLine.innerText.includes(message.users[i].name)) {
-
-            //} else {
                 writingUser += message.users[i].name + ",";
-            //}
         }
         if (writingUser !== "") {
             writingUser += " typing now";
