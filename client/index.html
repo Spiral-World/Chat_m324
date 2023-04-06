@@ -13,8 +13,14 @@
   <body class="bg-cyan-950">
     <div class="w-full h-screen flex justify-center">
       <div class="max-w-2xl w-full md:w-3/4 lg:w-2/4 bg-cyan-600 flex flex-col">
-        <div class="bg-cyan-800 px-4 py-4 rounded-b">
-          <p class="text-lg font-bold text-white">LB1 Chat - M324</p>
+        <div class="bg-cyan-800 px-4 py-4 rounded-b flex flex-row">
+          <div class="w-[50%] text-center flex flex-col">
+            <p class="text-lg font-bold text-white">LB1 Chat - M324</p>
+            <p id="activeLine" class="text-[10px] font-bold text-white"></p>
+          </div>
+          <div class="bg-cyan-950 w-[50%] text-center text-white hover:border-2 border-cyan-400"> 
+            <button>Show active users</button>
+          </div>
         </div>
         <div class="flex-grow flex flex-col justify-start p-4 gap-4" id="messages"></div>
         <div class="bg-cyan-800 px-4 py-4 flex items-center rounded-t">
