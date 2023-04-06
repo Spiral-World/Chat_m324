@@ -2,7 +2,7 @@ function writingCheck(message) {
     console.log('WebSocket message:', message.users);
     const activeLine = document.getElementById("activeLine");
     let writingUser = "";
-    if (message.users.length === 0 || message.type !== "typing") {
+    if (message.type !== "typing" || message.users.length === 0) {
         activeLine.innerText = "";
     } else {
         for (let i = 0; i < message.users.length; i++) {
