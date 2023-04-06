@@ -21,6 +21,24 @@
         break;
       case 'activeUsers':
         activeUsers = message.users;
+        let listAllUsers = document.getElementById("all-active-users");
+        const showButton = document.getElementById("showUsers");
+        showButton.addEventListener("mouseout", function() {
+          listAllUsers.innerHTML = "";
+        });
+        showButton.addEventListener("mouseover", function() {
+          if (listAllUsers.style.display === "block") {
+            listAllUsers.innerHTML = "";
+          }
+          //Design
+          listAllUsers.style.display = "block";
+          activeUsers.forEach((user, index) => {
+            const oneUser = document.createElement('div');
+            oneUser.className = "border-b-2 border-cyan-950";
+            oneUser.innerText = user.name;
+            listAllUsers.appendChild(oneUser);
+          });
+        });
         break;
       case 'typing':
         typingUsers = message.users;
